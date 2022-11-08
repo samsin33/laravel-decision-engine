@@ -9,12 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Samarth\\DecisionEngine\\": "src/"
+            "Samsin33\\DecisionEngine\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Samarth\\DecisionEngine\\Tests\\": "tests/"
+            "Samsin33\\DecisionEngine\\Tests\\": "tests/"
         }
     },
     "authors": [
