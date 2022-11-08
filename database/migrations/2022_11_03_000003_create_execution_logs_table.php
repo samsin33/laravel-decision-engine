@@ -36,6 +36,6 @@ class CreateRuleExecutionLogsTable extends Migration
      */
     public function down(): void
     {
-        Schema::connection(config('decision-engine.db_connection'))->drop('rule_executions');
+        Schema::connection(config('decision-engine.db_connection'))->drop('rule_execution_logs');
     }
 }
