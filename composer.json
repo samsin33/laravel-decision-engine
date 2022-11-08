@@ -9,7 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Samarth\\LaravelDecisionEngine\\": "src/"
+            "Samarth\\DecisionEngine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Samarth\\DecisionEngine\\Tests\\": "tests/"
         }
     },
     "authors": [
