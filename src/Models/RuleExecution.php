@@ -57,7 +57,7 @@ class RuleExecution extends Model
         });
 
         self::updated(function () {
-            $execution_log = new RuleExecutionLog(['previous_attributes' => $this->getOriginal(), 'new_attributes' => $this->getDirty()]);
+            $execution_log = DecisionEngine::ruleExecutionLog(['previous_attributes' => $this->getOriginal(), 'new_attributes' => $this->getDirty()]);
             $execution_log->save();
         });
     }

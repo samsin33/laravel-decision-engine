@@ -3,8 +3,12 @@
 namespace Samsin33\DecisionEngine\Services;
 
 use Exception;
+use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use Psr\Http\Message\ResponseInterface;
 use Samsin33\DecisionEngine\Models\RuleEngine;
 use Samsin33\DecisionEngine\Models\RuleExecution;
 
@@ -61,16 +65,42 @@ class RuleProcessService
     }
 
     /**
+     * @param string $url
+     * @param string $method
+     * @param array $properties
+     * @return ResponseInterface|null
+     * @throws GuzzleException
+     */
+    private function httpCurl(string $url, string $method, array $properties = []): ?ResponseInterface
+    {
+        try {
+            $guzzle = new HttpClient();
+            return $guzzle->request($method, $url, $properties);
+        } catch (RequestException $exception) {
+            return $exception->getResponse();
+        }
+    }
+
+    /**
      * @return array
+     * @throws GuzzleException
      */
     private function executeApi(): array
     {
-        extract($this->rule_execution->input);
-        $result = eval($this->rule_engine->business_rules);
-        return [
-            'status' => 'API Success',
-            'output' => $result
-        ];
+        try {
+            extract($this->rule_execution->input);
+            $this->httpCurl($url, $method, $properties ?? []);
+            $result = eval($this->rule_engine->business_rules);
+            return [
+                'status' => 'API Success',
+                'output' => $result
+            ];
+        } catch (Exception $exception) {
+            return [
+                'status' => 'API Failure',
+                'output' => $exception->getTraceAsString(),
+            ];
+        }
     }
 
     /**
