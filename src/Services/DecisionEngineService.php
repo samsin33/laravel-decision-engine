@@ -3,7 +3,6 @@
 namespace Samsin33\DecisionEngine\Services;
 
 use Illuminate\Support\Facades\Validator;
-use Samsin33\DecisionEngine\Models\RuleEngine;
 use Samsin33\DecisionEngine\Models\RuleExecution;
 
 class DecisionEngineService
@@ -29,7 +28,7 @@ class DecisionEngineService
     private RuleExecution $rule_execution;
 
     /**
-     * @param array $input
+     * @param RuleExecution $rule_execution
      */
     public function __construct(RuleExecution $rule_execution)
     {

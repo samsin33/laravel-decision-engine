@@ -17,6 +17,13 @@ class RuleExecution extends Model
     private MessageBag $errors;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rule_executions';
+
+    /**
      *
      * @var array<string>
      */

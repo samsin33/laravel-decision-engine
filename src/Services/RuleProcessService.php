@@ -53,7 +53,7 @@ class RuleProcessService
     private function executeCommand(): array
     {
         extract($this->rule_execution->input);
-        $result = Artisan::call($this->rule_engine->business_rules);
+        $result = Artisan::call("{$this->rule_engine->business_rules}");
         return [
             'status' => 'Command Success',
             'output' => $result

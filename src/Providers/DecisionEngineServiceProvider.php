@@ -30,10 +30,6 @@ class DecisionEngineServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->configure();
-
-        $this->app->bind('decisionEngine',function($rule_execution){
-            return new DecisionEngineService($rule_execution);
-        });
     }
 
     /**

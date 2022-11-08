@@ -17,6 +17,13 @@ class RuleEngine extends Model
     private MessageBag $errors;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rule_engines';
+
+    /**
      *
      * @var array<string>
      */

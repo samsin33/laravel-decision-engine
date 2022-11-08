@@ -5,7 +5,6 @@ namespace Samsin33\DecisionEngine\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Samsin33\DecisionEngine\DecisionEngine;
-use Samsin33\DecisionEngine\Facades\DecisionEngineFacade;
 use Samsin33\DecisionEngine\Services\DecisionEngineService;
 
 class RuleExecutionsController extends Controller
@@ -20,7 +19,6 @@ class RuleExecutionsController extends Controller
     {
         $rule_execution = DecisionEngine::ruleExecution($request->rule_execution);
         if ($rule_execution->save()) {
-//            $result = DecisionEngineFacade::processInput($rule_execution);
             $decision_engine_service = new DecisionEngineService($rule_execution);
             $result = $decision_engine_service->processInput();
             return response()->json(['output' => $result, 'rule_execution' => $rule_execution]);
