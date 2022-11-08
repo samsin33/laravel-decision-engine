@@ -36,7 +36,7 @@ return [
     | Default is id.
     |
     */
-    'db_primary_key_type' => env('DECISION_ENGINE_CONNECTION', 'id'),
+    'db_primary_key_type' => env('DECISION_ENGINE_PRIMARY_KEY_TYPE', 'id'),
 
     /*
     |--------------------------------------------------------------------------
