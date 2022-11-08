@@ -1,5 +1,5 @@
 {
-    "name": "samarth/laravel-decision-engine",
+    "name": "samsin33/laravel-decision-engine",
     "description": "This package provide support for making decision engine in laravel.",
     "keywords": ["laravel", "decision engine", "rule engine"],
     "license": "MIT",
