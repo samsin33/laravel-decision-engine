@@ -153,7 +153,7 @@ class DecisionEngine
      */
     public static function useRuleExecutionLogModel(string $ruleExecutionLogModel): void
     {
-        static::$ruleExecutionModel = $ruleExecutionLogModel;
+        static::$ruleExecutionLogModel = $ruleExecutionLogModel;
     }
 
     /**
