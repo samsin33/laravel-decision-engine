@@ -22,7 +22,7 @@ class CreateRuleExecutionsTable extends Migration
                 $table->unsignedBigInteger('rule_engine_id')->nullable();
             }
             $table->string('created_by', 60)->nullable();
-            $table->text('input')->nullable()->index();
+            $table->text('input')->nullable();
             $table->text('output')->nullable();
             $table->string('status', 30)->nullable();
             $table->ipAddress('ipaddress')->nullable();

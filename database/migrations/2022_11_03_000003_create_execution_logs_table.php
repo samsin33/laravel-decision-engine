@@ -21,7 +21,7 @@ class CreateRuleExecutionLogsTable extends Migration
                 $table->id();
                 $table->unsignedBigInteger('rule_execution_id')->nullable();
             }
-            $table->text('previous_attributes')->nullable()->index();
+            $table->text('previous_attributes')->nullable();
             $table->text('new_attributes')->nullable();
             $table->ipAddress('ipaddress')->nullable();
             $table->timestamps();
