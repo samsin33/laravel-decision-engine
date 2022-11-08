@@ -4,6 +4,7 @@ namespace Samsin33\DecisionEngine;
 
 use Samsin33\DecisionEngine\Models\RuleEngine;
 use Samsin33\DecisionEngine\Models\RuleExecution;
+use Samsin33\DecisionEngine\Models\RuleExecutionLog;
 
 class DecisionEngine
 {
@@ -36,17 +37,25 @@ class DecisionEngine
     public static string $ruleEngineModel = 'Samsin33\DecisionEngine\Models\RuleEngine';
 
     /**
-     * The auth code model class name.
+     * The rule execution model class name.
      *
      * @var string
      */
     public static string $ruleExecutionModel = 'Samsin33\DecisionEngine\Models\RuleExecution';
+
+    /**
+     * The rule execution log model class name.
+     *
+     * @var string
+     */
+    public static string $ruleExecutionLogModel = 'Samsin33\DecisionEngine\Models\RuleExecutionLog';
 
     public function __construct()
     {
         if (config('decision-engine.db_primary_key_type') == 'uuid') {
             static::$ruleEngineModel = 'Samsin33\DecisionEngine\Models\RuleEngineUuid';
             static::$ruleExecutionModel = 'Samsin33\DecisionEngine\Models\RuleExecutionUuid';
+            static::$ruleExecutionLogModel = 'Samsin33\DecisionEngine\Models\RuleExecutionLogUuid';
         }
     }
 
@@ -134,5 +143,37 @@ class DecisionEngine
     public static function ruleExecution(array $data = []): RuleExecution
     {
         return new static::$ruleExecutionModel($data);
+    }
+
+    /**
+     * Set the rule execution log model class name.
+     *
+     * @param string $ruleExecutionLogModel
+     * @return void
+     */
+    public static function useRuleExecutionLogModel(string $ruleExecutionLogModel): void
+    {
+        static::$ruleExecutionModel = $ruleExecutionLogModel;
+    }
+
+    /**
+     * Get the rule execution model class name.
+     *
+     * @return string
+     */
+    public static function ruleExecutionLogModel(): string
+    {
+        return static::$ruleExecutionLogModel;
+    }
+
+    /**
+     * Get a new rule execution model instance.
+     *
+     * @param array $data
+     * @return RuleExecutionLog
+     */
+    public static function ruleExecutionLog(array $data = []): RuleExecutionLog
+    {
+        return new static::$ruleExecutionLogModel($data);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Rule;
+use Samsin33\DecisionEngine\DecisionEngine;
 
 class RuleEngine extends Model
 {
@@ -96,6 +97,6 @@ class RuleEngine extends Model
      */
     public function ruleExecutions(): HasMany
     {
-        return $this->hasMany(RuleExecution::class, 'rule_engine_id', 'id');
+        return $this->hasMany(DecisionEngine::$ruleExecutionModel, 'rule_engine_id', 'id');
     }
 }

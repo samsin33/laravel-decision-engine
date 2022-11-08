@@ -5,7 +5,6 @@ namespace Samsin33\DecisionEngine\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Samsin33\DecisionEngine\DecisionEngine;
-use Samsin33\DecisionEngine\Services\DecisionEngineService;
 
 class DecisionEngineServiceProvider extends ServiceProvider
 {

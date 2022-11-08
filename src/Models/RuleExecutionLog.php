@@ -4,11 +4,17 @@ namespace Samsin33\DecisionEngine\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Samsin33\DecisionEngine\DecisionEngine;
 
 class RuleExecutionLog extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rule_execution_logs';
+
     /**
      *
      * @var array<string>
@@ -38,6 +44,6 @@ class RuleExecutionLog extends Model
      */
     public function ruleExecution(): BelongsTo
     {
-        return $this->belongsTo(RuleExecution::class, 'rule_execution_id', 'id');
+        return $this->belongsTo(DecisionEngine::$ruleExecutionModel, 'rule_execution_id', 'id');
     }
 }

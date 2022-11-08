@@ -4,10 +4,12 @@ namespace Samsin33\DecisionEngine\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Rule;
+use Samsin33\DecisionEngine\DecisionEngine;
 
 class RuleExecution extends Model
 {
@@ -97,6 +99,14 @@ class RuleExecution extends Model
      */
     public function ruleEngine(): BelongsTo
     {
-        return $this->belongsTo(RuleEngine::class, 'rule_engine_id', 'id');
+        return $this->belongsTo(DecisionEngine::$ruleEngineModel, 'rule_engine_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function ruleExecutionLogs(): HasMany
+    {
+        return $this->hasMany(DecisionEngine::$ruleExecutionLogModel, 'rule_execution_id', 'id');
     }
 }

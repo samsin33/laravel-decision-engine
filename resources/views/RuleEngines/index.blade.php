@@ -4,6 +4,7 @@
             <tr>
                 <th>Name</th>
                 <th>Type</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -11,11 +12,12 @@
         @foreach($rule_engines as $rule_engine)
             <tr>
                 <td>{{ $rule_engine->name }}</td>
-            </tr>
-            <tr>
                 <td>{{ config('decision-engine.types')[$rule_engine->type] ?? '' }}</td>
+                <td>{{ $rule_engine->status }}</td>
+                <td>
+                    <a href="{{ route('decision-engine.rule-engines.show', $rule_engine->id) }}">View</a>
+                </td>
             </tr>
-            <tr></tr>
         @endforeach
         </tbody>
     </table>
