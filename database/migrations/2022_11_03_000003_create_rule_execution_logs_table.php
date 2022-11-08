@@ -19,7 +19,7 @@ class CreateRuleExecutionLogsTable extends Migration
                 $table->uuid('rule_execution_id')->nullable();
             } else {
                 $table->id();
-                $table->unsignedBigInteger('rule_execution_id')->nullable();
+                $table->unsignedBigInteger('rule_execution_id')->nullable()->index();
             }
             $table->text('previous_attributes')->nullable();
             $table->text('new_attributes')->nullable();
