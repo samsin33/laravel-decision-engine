@@ -72,7 +72,7 @@ class RuleExecution extends Model
     {
         return [
             'rule_engine_id' => ['required',
-                Rule::exists(config('decision-engine.db_connection').'.rule_engines', 'id'),
+                Rule::exists(config('decision-engine.db_connection').'.rule_engines', 'id')->where('status', 1),
             ],
             'input' => ['required', 'array'],
             'status' => ['string',

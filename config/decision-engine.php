@@ -57,6 +57,30 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | DecisionEngine Web Route guards
+    |--------------------------------------------------------------------------
+    |
+    | This is the guards of the decision engine web routes.
+    | This contains the web routes for index, create, update and show for rule engines and index and show for rule executions.
+    | Default is web.
+    |
+    */
+    'web_guards' => ['web'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | DecisionEngine API route guard
+    |--------------------------------------------------------------------------
+    |
+    | This is the guards of the decision engine API routes.
+    | This contains the api which executes your decision engine rule based on the input given.
+    | Default is null but make sure to change the value according to your requirement.
+    |
+    */
+    'api_guards' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Pagination Size
     |--------------------------------------------------------------------------
     |
