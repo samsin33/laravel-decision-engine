@@ -1,3 +1,5 @@
+<div class="col-md-12"><h1>Rule Engine</h1></div>
+<div><a href="{{ route('decision-engine.rule-engines.index') }}">Rule Engines List</a></div>
 <div>
     <div class="col-md-12">
         <div class="col-md-6">

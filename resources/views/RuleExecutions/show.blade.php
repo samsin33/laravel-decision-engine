@@ -1,4 +1,5 @@
 <div class="col-md-12"><h1>Rule Execution</h1></div>
+<div><a href="{{ route('decision-engine.rule-executions.index') }}">Rule Executions List</a></div>
 <div>
     <div class="col-md-12">
         <div class="col-md-6">

@@ -1,3 +1,4 @@
+<div class="col-md-12"><h1>Rule Executions List</h1></div>
 <div>
     <table>
         <thead>

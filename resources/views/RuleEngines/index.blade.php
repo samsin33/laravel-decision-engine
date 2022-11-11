@@ -1,12 +1,14 @@
+<div class="col-md-12"><h1>Rule Engines List</h1></div>
 <div>
+    <div><a href="{{ route('decision-engine.rule-engines.create') }}">Create Rule Engine</a></div>
     <table>
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($rule_engines as $rule_engine)

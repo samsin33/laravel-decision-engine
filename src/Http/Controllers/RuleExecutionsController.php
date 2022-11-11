@@ -12,7 +12,7 @@ class RuleExecutionsController extends Controller
     public function index(Request $request)
     {
         $rule_executions = DecisionEngine::ruleExecutionModel()::paginate(config('decision-engine.pagination_size'));
-        return view('RuleExecutions.index', compact('rule_executions'));
+        return view('decision-engine::RuleExecutions.index', compact('rule_executions'));
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class RuleExecutionsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $rule_engine = DecisionEngine::ruleExecutionModel()::findOrFail($id);
-        return view('RuleExecutions.show', compact('rule_engine'));
+        $rule_engine = DecisionEngine::ruleExecutionModel()::with(['ruleExecutionLogs'])->findOrFail($id);
+        return view('decision-engine::RuleExecutions.show', compact('rule_engine'));
     }
 }
