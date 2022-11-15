@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="col-md-6">
             <label>Rule Engine</label>
-            <span><a href="{{ route('decision-engine.rule-engines.show', $rule_execution->rule_engine->id) }}" target="_blank">{{ $rule_execution->rule_engine->name }}</a></span>
+            <span><a href="{{ route('decision-engine.rule-engines.show', $rule_execution->ruleEngine->id) }}" target="_blank">{{ $rule_execution->ruleEngine->name }}</a></span>
         </div>
         <div class="col-md-6">
             <label>Status</label>
@@ -44,7 +44,7 @@
 </div>
 <div class="col-md-12"><h1>Rule Execution Logs</h1></div>
 <div>
-    @foreach($rule_execution->$rule_execution_logs as $rule_execution_log)
+    @foreach($rule_execution->ruleExecutionLogs as $rule_execution_log)
         <div class="col-md-12">
             <div class="col-md-6">
                 <label>Created At</label>

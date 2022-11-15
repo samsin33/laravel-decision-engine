@@ -2,6 +2,7 @@
 
 namespace Samsin33\DecisionEngine\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -58,7 +59,7 @@ class RuleExecution extends Model
 
         self::updated(function ($rule_execution) {
             $execution_log = DecisionEngine::ruleExecutionLog(['previous_attributes' => $rule_execution->getOriginal(), 'new_attributes' => $rule_execution->getDirty()]);
-            $execution_log->save();
+            $rule_execution->ruleExecutionLogs()->save($execution_log);
         });
     }
 
@@ -74,7 +75,7 @@ class RuleExecution extends Model
             'rule_engine_id' => ['required',
                 Rule::exists(config('decision-engine.db_connection').'.rule_engines', 'id')->where('status', 1),
             ],
-            'input' => ['required', 'array'],
+            'input' => ['required'],
             'status' => ['string',
                 Rule::requiredIf(function () {
                     return $this->id > 0;
@@ -108,5 +109,28 @@ class RuleExecution extends Model
     public function ruleExecutionLogs(): HasMany
     {
         return $this->hasMany(DecisionEngine::$ruleExecutionLogModel, 'rule_execution_id', 'id');
+    }
+
+    //--------------------- Accessors & Mutators -----------------------
+
+    /**
+     * @return Attribute
+     */
+    protected function input(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+
+    /**
+     * @return Attribute
+     */
+    protected function output(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => is_array($value) ? json_encode($value) : $value,
+        );
     }
 }

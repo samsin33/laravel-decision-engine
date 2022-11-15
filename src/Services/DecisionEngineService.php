@@ -3,6 +3,7 @@
 namespace Samsin33\DecisionEngine\Services;
 
 use Illuminate\Support\Facades\Validator;
+use Samsin33\DecisionEngine\Models\RuleEngine;
 use Samsin33\DecisionEngine\Models\RuleExecution;
 
 class DecisionEngineService
@@ -13,14 +14,14 @@ class DecisionEngineService
     private $validate = null;
 
     /**
-     * @var array
+     * @var array $input
      */
     private array $input;
 
     /**
-     * @var $rule_engine
+     * @var RuleEngine $rule_engine
      */
-    private $rule_engine = null;
+    private RuleEngine $rule_engine;
 
     /**
      * @var RuleExecution $rule_execution
@@ -34,7 +35,7 @@ class DecisionEngineService
     {
         $this->rule_execution = $rule_execution;
         $this->input = $rule_execution->input;
-        $this->rule_engine = $rule_execution->rule_engine;
+        $this->rule_engine = $rule_execution->ruleEngine;
     }
 
     /**
@@ -42,7 +43,7 @@ class DecisionEngineService
      */
     public function validateInput(): bool
     {
-        $this->validate = Validator::make($this->input, $this->rule_engine->validation);
+        $this->validate = Validator::make($this->input, eval('return '.$this->rule_engine->validation.';'));
         if ($this->validate->fails()) {
             return false;
         }
@@ -58,7 +59,7 @@ class DecisionEngineService
         if (!$this->rule_engine) {
             $result = [
                 'status' => 'Invalid Rule Engine',
-                'output' => "Rule Engine {$this->rule_engine->name} does not exist.",
+                'output' => 'Rule Engine '.($this->rule_engine->name ?? '').' does not exist.',
             ];
             $executeProcess->updateRuleExecution($result);
         } elseif (!$this->validateInput()) {

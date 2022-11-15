@@ -30,7 +30,7 @@ class RuleProcessService
     public function __construct(RuleExecution $rule_execution)
     {
         $this->rule_execution = $rule_execution;
-        $this->rule_engine = $this->rule_execution->rule_engine;
+        $this->rule_engine = $this->rule_execution->ruleEngine;
     }
 
     private function getTypes()
@@ -43,12 +43,20 @@ class RuleProcessService
      */
     private function executeCode(): array
     {
-        extract($this->rule_execution->input);
-        $result = eval($this->rule_engine->business_rules);
-        return [
-            'status' => 'Code Success',
-            'output' => $result
-        ];
+        try {
+            $data = $this->rule_execution->input;
+            extract($data);
+            $result = eval($this->rule_engine->business_rules);
+            return [
+                'status' => 'Code Success',
+                'output' => $result,
+            ];
+        } catch (Exception $exception) {
+            return [
+                'status' => 'Code Execution Failure',
+                'output' => $exception->getTraceAsString(),
+            ];
+        }
     }
 
     /**
@@ -56,12 +64,20 @@ class RuleProcessService
      */
     private function executeCommand(): array
     {
-        extract($this->rule_execution->input);
-        $result = Artisan::call("{$this->rule_engine->business_rules}");
-        return [
-            'status' => 'Command Success',
-            'output' => $result
-        ];
+        try {
+            $data = $this->rule_execution->input;
+            extract($data);
+            $result = Artisan::call("{$this->rule_engine->business_rules}");
+            return [
+                'status' => 'Command Success',
+                'output' => $result
+            ];
+        } catch (Exception $exception) {
+            return [
+                'status' => 'Command Execution Failure',
+                'output' => $exception->getTraceAsString(),
+            ];
+        }
     }
 
     /**
@@ -88,7 +104,8 @@ class RuleProcessService
     private function executeApi(): array
     {
         try {
-            extract($this->rule_execution->input);
+            $data = $this->rule_execution->input;
+            extract($data);
             $this->httpCurl($url, $method, $properties ?? []);
             $result = eval($this->rule_engine->business_rules);
             return [
@@ -113,7 +130,7 @@ class RuleProcessService
             $result = $this->$execType();
         } catch (Exception $exception) {
             $result = [
-                'status' => 'Exception Failure',
+                'status' => 'Exception Rule Process Failure',
                 'output' => $exception->getTraceAsString(),
             ];
         }
