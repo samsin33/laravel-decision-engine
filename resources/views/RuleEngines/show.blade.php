@@ -21,11 +21,11 @@
     <div class="col-md-12">
         <div class="col-md-6">
             <label>Created At</label>
-            <span>{{ $rule_execution->created_at }}</span>
+            <span>{{ $rule_engine->created_at }}</span>
         </div>
         <div class="col-md-6">
             <label>Updated At</label>
-            <span>{{ $rule_execution->updated_at }}</span>
+            <span>{{ $rule_engine->updated_at }}</span>
         </div>
     </div>
     <div class="col-md-12">

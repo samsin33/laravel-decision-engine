@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-9">
             <span>
-                {{ $rule_execution->input }}
+                {{ json_encode($rule_execution->input) }}
             </span>
         </div>
     </div>

@@ -11,10 +11,10 @@
         <tbody>
         @foreach($rule_executions as $rule_execution)
             <tr>
-                <td><a href="{{ route('decision-engine.rule-engines.show', $rule_execution->$rule_engine->id) }}">{{ $rule_execution->$rule_engine->name }}</a></td>
+                <td><a href="{{ route('decision-engine.rule-engines.show', $rule_execution->ruleEngine->id) }}">{{ $rule_execution->ruleEngine->name }}</a></td>
             </tr>
             <tr>
-                <td>{{ $rule_engine->status }}</td>
+                <td>{{ $rule_execution->status }}</td>
             </tr>
             <tr>
                 <td>
@@ -24,4 +24,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $rule_executions->links() }}
 </div>

@@ -52,7 +52,6 @@ return [
     'types' => [
         'code' => 'Code',
         'command' => 'Command',
-        'api' => 'API',
     ],
 
     /*
