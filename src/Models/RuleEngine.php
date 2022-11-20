@@ -28,13 +28,13 @@ class RuleEngine extends Model
      *
      * @var array<string>
      */
-    protected $fillable = ['name', 'type', 'validation', 'business_rules', 'status'];
+    protected $fillable = ['created_by', 'name', 'type', 'validation', 'business_rules', 'status'];
 
     /**
      *
      * @var array<string>
      */
-    protected $visible = ['id', 'name', 'type', 'validation', 'business_rules', 'status', 'created_at', 'updated_at'];
+    protected $visible = ['id', 'created_by', 'name', 'type', 'validation', 'business_rules', 'status', 'created_at', 'updated_at'];
 
     protected static function booted()
     {

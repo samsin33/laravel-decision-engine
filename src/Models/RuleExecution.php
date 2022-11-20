@@ -30,13 +30,13 @@ class RuleExecution extends Model
      *
      * @var array<string>
      */
-    protected $fillable = ['rule_engine_id', 'input', 'output', 'status'];
+    protected $fillable = ['created_by', 'rule_engine_id', 'input', 'output', 'status'];
 
     /**
      *
      * @var array<string>
      */
-    protected $visible = ['id', 'rule_engine_id', 'input', 'output', 'status', 'created_at', 'updated_at'];
+    protected $visible = ['id', 'created_by', 'rule_engine_id', 'input', 'output', 'status', 'created_at', 'updated_at'];
 
     protected static function booted()
     {

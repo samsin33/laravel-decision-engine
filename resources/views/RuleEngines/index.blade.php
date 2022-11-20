@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ $rule_engine->name }}</td>
                 <td>{{ config('decision-engine.types')[$rule_engine->type] ?? '' }}</td>
-                <td>{{ $rule_engine->status }}</td>
+                <td>{{ $rule_engine->status == 1 ? 'Active' : 'Inactive' }}</td>
                 <td>
                     <a href="{{ route('decision-engine.rule-engines.edit', $rule_engine->id) }}">Edit</a>
                     <a href="{{ route('decision-engine.rule-engines.show', $rule_engine->id) }}">View</a>
