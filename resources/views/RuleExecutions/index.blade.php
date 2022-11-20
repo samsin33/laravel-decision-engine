@@ -12,11 +12,7 @@
         @foreach($rule_executions as $rule_execution)
             <tr>
                 <td><a href="{{ route('decision-engine.rule-engines.show', $rule_execution->ruleEngine->id) }}">{{ $rule_execution->ruleEngine->name }}</a></td>
-            </tr>
-            <tr>
                 <td>{{ $rule_execution->status }}</td>
-            </tr>
-            <tr>
                 <td>
                     <a href="{{ route('decision-engine.rule-executions.show', $rule_execution->id) }}">View</a>
                 </td>
