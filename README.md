@@ -23,7 +23,7 @@ If you need to overwrite the migrations that ship with this package, you can pub
 $ php artisan vendor:publish --tag="decision-engine-migrations"
 ```
 
-If you would like to prevent Decision Engine's migrations from running entirely, you may use the ignoreMigrations method provided by Razorpay. Typically, this method should be called in the register method of your AppServiceProvider:
+If you would like to prevent Decision Engine's migrations from running entirely, you may use the ignoreMigrations method provided by DecisionEngine. Typically, this method should be called in the register method of your AppServiceProvider:
 
 ```bash
 use Samsin33\DecisionEngine\DecisionEngine;
