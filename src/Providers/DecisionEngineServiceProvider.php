@@ -5,6 +5,9 @@ namespace Samsin33\DecisionEngine\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Samsin33\DecisionEngine\DecisionEngine;
+use Samsin33\DecisionEngine\Models\RuleEngineUuid;
+use Samsin33\DecisionEngine\Models\RuleExecutionLogUuid;
+use Samsin33\DecisionEngine\Models\RuleExecutionUuid;
 
 class DecisionEngineServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,11 @@ class DecisionEngineServiceProvider extends ServiceProvider
         $this->registerMigrations();
         $this->registerPublishing();
         $this->registerResources();
+        if (config('decision-engine.db_primary_key_type') == 'uuid') {
+            DecisionEngine::useRuleEngineModel(RuleEngineUuid::class);
+            DecisionEngine::useRuleExecutionModel(RuleExecutionUuid::class);
+            DecisionEngine::useRuleExecutionLogModel(RuleExecutionLogUuid::class);
+        }
     }
 
     /**

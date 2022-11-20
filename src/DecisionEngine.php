@@ -50,15 +50,6 @@ class DecisionEngine
      */
     public static string $ruleExecutionLogModel = 'Samsin33\DecisionEngine\Models\RuleExecutionLog';
 
-    public function __construct()
-    {
-        if (config('decision-engine.db_primary_key_type') == 'uuid') {
-            static::$ruleEngineModel = 'Samsin33\DecisionEngine\Models\RuleEngineUuid';
-            static::$ruleExecutionModel = 'Samsin33\DecisionEngine\Models\RuleExecutionUuid';
-            static::$ruleExecutionLogModel = 'Samsin33\DecisionEngine\Models\RuleExecutionLogUuid';
-        }
-    }
-
     /**
      * Configure DecisionEngine to not register its migrations.
      *

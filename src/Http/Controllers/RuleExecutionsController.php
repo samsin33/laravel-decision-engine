@@ -29,7 +29,7 @@ class RuleExecutionsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $rule_engine = DecisionEngine::ruleExecutionModel()::with(['ruleExecutionLogs'])->findOrFail($id);
-        return view('decision-engine::RuleExecutions.show', compact('rule_engine'));
+        $rule_execution = DecisionEngine::ruleExecutionModel()::with(['ruleExecutionLogs'])->findOrFail($id);
+        return view('decision-engine::RuleExecutions.show', compact('rule_execution'));
     }
 }
